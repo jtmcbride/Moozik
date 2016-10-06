@@ -1,4 +1,10 @@
 <h1>Edit Band</h1>
+<% @band.errors.full_messages.each do |msg| %>
+  <h3>Errors</h3>
+  <div>
+    <%= msg %>
+  </div>
+<% end %>
 <form action="<%= band_url(@band) %>" method="post">
   <input type="hidden" name="_method" value="patch" />
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

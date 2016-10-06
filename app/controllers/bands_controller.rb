@@ -1,6 +1,7 @@
 class BandsController < ApplicationController
   before_action :check_login
   def new
+    @band = Band.new
   end
 
   def index
@@ -8,9 +9,9 @@ class BandsController < ApplicationController
   end
 
   def create
-    band = Band.new(band_params)
-    if band.save
-      redirect_to band_url(band)
+    @band = Band.new(band_params)
+    if @band.save
+      redirect_to band_url(@band)
     else
       render :new
     end

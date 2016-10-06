@@ -3,14 +3,15 @@ class UsersController < ApplicationController
 
   def new
     redirect_to user_url(current_user) if logged_in?
+    @user = User.new
   end
 
   def create
     redirect_to user_url(current_user) if logged_in?
-    user = User.new(user_params)
-    if user.save
-      login(user)
-      redirect_to user_url(user)
+    @user = User.new(user_params)
+    if @user.save
+      login(@user)
+      redirect_to user_url(@user)
     else
       render :new
     end
