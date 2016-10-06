@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     resource :track, only: [:new]
   end
 
-  resources :tracks, except: [:new, :index]
+  resources :tracks, except: [:new, :index] do
+    resources :notes, only: [:create, :destroy]
+  end
 
   root to: 'bands#index'
   # The priority is based upon order of creation: first created -> highest priority.

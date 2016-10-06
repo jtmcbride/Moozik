@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
   attr_reader :password
 
+  has_many :notes
+
   def self.find_by_creds(email, pw)
     user = User.find_by_email(email)
     if user && user.is_password?(pw)
