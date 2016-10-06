@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_login, only: [:show]
 
   def new
     redirect_to user_url(current_user) if logged_in?

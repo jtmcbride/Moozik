@@ -8,3 +8,10 @@
   <input type="radio" name="album[live_album]" value="true">Live <br />
   <button>Submit</button>
 </form>
+<select name="album[band_id]">
+  <% @bands.each do |band| %>
+    <option <%= "selected" if band.id = @band.id %> value="<%= band.id %>">
+      <%= band.name %>
+    </option>
+  <% end %>
+</select>

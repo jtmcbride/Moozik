@@ -1,6 +1,16 @@
 <h1><%= @album.title %></h1>
+<% if @album.live_album %>
+  <p>
+    Recorded Live
+  </p>
+<% end %>
+<p>
+  By: <%= link_to @album.band.name, band_url(@album.band) %>
+</p>
+<h3>Tracks</h3>
 <% @album.tracks.each do |track| %>
   <ul>
     <li><%= link_to track.title, track_url(track) %></li>
   </ul>
 <% end %>
+<%= button_to "New Track", new_album_track_url(@album), method: :get %>

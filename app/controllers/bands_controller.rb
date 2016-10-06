@@ -1,5 +1,5 @@
 class BandsController < ApplicationController
-
+  before_action :check_login
   def new
   end
 
@@ -27,6 +27,12 @@ class BandsController < ApplicationController
   def destroy
     Band.destroy(params[:id])
     redirect_to bands_url
+  end
+
+  def update
+    band = Band.find(params[:id])
+    band.update(band_params)
+    redirect_to band_url(band)
   end
 
   private
