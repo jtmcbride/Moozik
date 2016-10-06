@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
-
+  before_action :check_login
+  
   def create
     note = Note.new(note_params)
     note.user_id = current_user.id
