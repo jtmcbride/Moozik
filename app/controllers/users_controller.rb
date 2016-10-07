@@ -10,8 +10,11 @@ class UsersController < ApplicationController
     redirect_to user_url(current_user) if logged_in?
     @user = User.new(user_params)
     if @user.save
-      login(@user)
-      redirect_to user_url(@user)
+      # login(@user)
+      email = UserMailer.activation_email(@user)
+      email.deliver
+      # redirect_to user_url(@user)
+      render :activation
     else
       render :new
     end
@@ -20,6 +23,19 @@ class UsersController < ApplicationController
   def show
     unless current_user
       redirect_to new_session_url
+    end
+  end
+
+  def activate
+    debugger
+    @user = User.where(activation_token: params[:activation_token]).first
+    if @user
+      @user.activated = true
+      @user.save
+      login(@user)
+      redirect_to user_url(@user)
+    else
+      redirect_to new_user_url
     end
   end
 

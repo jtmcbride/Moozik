@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
   end
 
   def login(user)
-    session[:session_token] = user.session_token
+    if user.activated
+      session[:session_token] = user.session_token
+    end
   end
 
   def logged_in?
@@ -21,4 +23,5 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_url
     end
   end
+
 end

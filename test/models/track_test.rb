@@ -3,9 +3,10 @@
 # Table name: tracks
 #
 #  id          :integer          not null, primary key
-#  title       :string
+#  title       :string           not null
 #  lyrics      :text
 #  bonus_track :boolean
+#  album_id    :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

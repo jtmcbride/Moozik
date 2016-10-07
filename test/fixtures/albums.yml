@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  title      :string
 #  live_album :boolean
-#  band_id    :string
+#  band_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

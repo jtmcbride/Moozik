@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  # before_action :check_activated, only: [:create]
+
   def new
     if logged_in?
       redirect_to user_url(current_user)
