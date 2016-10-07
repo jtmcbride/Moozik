@@ -36,6 +36,13 @@ class BandsController < ApplicationController
     redirect_to band_url(band)
   end
 
+  def search_results
+    @bands = Band.where("lower(name) LIKE ?", "%#{params[:q].downcase}%")
+  end
+
+  def search
+  end
+
   private
 
   def band_params

@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   end
   resource :session, only: [:new, :create, :destroy]
   resources :bands do
+    collection do
+      get 'search'
+      post 'search_results'
+    end
     resource :albums, only: [:new]
   end
   resources :albums, except: [:index, :new] do
