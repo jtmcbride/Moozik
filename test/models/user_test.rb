@@ -10,6 +10,7 @@
 #  updated_at       :datetime         not null
 #  activated        :boolean          default(FALSE)
 #  activation_token :string
+#  admin            :boolean          default(FALSE)
 #
 
 require 'test_helper'

@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
   before_action :check_login, only: [:show]
+  before_action :check_admin, only: [:index]
 
   def new
     redirect_to user_url(current_user) if logged_in?
     @user = User.new
+  end
+
+  def index
+    @users = User.all
   end
 
   def create
@@ -39,10 +44,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin
+    if current_user.admin
+      user = User.find(params[:id])
+      user.admin = true
+      user.save
+      redirect_to users_url
+    else
+      redirect_to users_url(current_user)
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(:email, :password)
+  end
+
+  def check_admin
+    unless current_user.admin
+      redirect_to root_url
+    end
   end
 
 end

@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :check_login
-  
+
   def create
     note = Note.new(note_params)
     note.user_id = current_user.id
@@ -11,7 +11,7 @@ class NotesController < ApplicationController
 
   def destroy
     note = Note.find(params[:id])
-    if current_user.id = note.user_id
+    if current_user.id = note.user_id || current_user.admin
       Note.destroy(params[:id])
       redirect_to track_url(params[:track_id])
     else

@@ -2,6 +2,6 @@
 <p>
   <%= note.body %>
 </p>
-<% if current_user == note.user %>
+<% if current_user.id == note.user_id || current_user.admin %>
   <%= link_to 'Delete Note', track_note_url(@track, note), method: :delete %>
 <% end %>
